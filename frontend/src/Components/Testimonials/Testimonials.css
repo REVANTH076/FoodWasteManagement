@@ -1,0 +1,145 @@
+.testimonials {
+    margin: 60px auto;
+    padding: 0 20px;
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+}
+
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn, .next-btn {
+    width: 35px;
+    height: 35px;
+    background-color: #212EA0;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-btn:hover, .next-btn:hover {
+    background-color: #4e5bf1;
+    transform: scale(1.1);
+}
+
+.back-btn {
+    margin-right: 10px;
+}
+
+.next-btn {
+    margin-left: 10px;
+}
+
+.slider {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider ul {
+    display: flex;
+    transition: transform 0.5s ease;
+    padding: 0;
+    margin: 0;
+}
+
+.slider ul li {
+    list-style: none;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.user-info img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #212EA0;
+}
+
+.user-info h3 {
+    margin: 0;
+    color: #212EA0;
+    font-size: 20px;
+}
+.user-info span {
+    font-size: 14px;
+    color: #666;
+}
+
+.para-text p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slide {
+        padding: 30px;
+    }
+
+    .user-info img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .para-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-btn, .next-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .slide {
+        padding: 20px;
+    }
+
+    .user-info {
+        flex-direction: column;
+    }
+
+    .user-info img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user-info h3 {
+        font-size: 18px;
+    }
+
+    .para-text p {
+        font-size: 0.95rem;
+    }
+}
