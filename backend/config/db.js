@@ -11,7 +11,8 @@ const connectDB = async () => {
     } catch (error) {
         console.error("❌ MongoDB Connection Failed:", error);
         process.exit(1);
+        // process.exit(1) means exit with failure.this immediately stops your Node.js server
     }
 };
 
-module.exports = connectDB;
+module.exports =connectDB;

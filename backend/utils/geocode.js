@@ -4,6 +4,9 @@ const axios = require('axios');
 async function getCoordinatesFromAddress(address) {
   try {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+//     address = "Charminar, Hyderabad"
+// url → https://nominatim.openstreetmap.org/search?format=json&q=Charminar%2C%20Hyderabad
+
     const response = await axios.get(url);
 
     if (response.data.length > 0) {

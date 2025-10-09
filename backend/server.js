@@ -69,6 +69,8 @@ io.on("connection", (socket) => {
       console.log("User disconnected:", socket.id);
     });
   });
+  // "connection","disconnect" → built-in server-side event from Socket.IO.
+  // Triggered when a client successfully connects,Each connected socket has a unique ID:
 
 // Connect to MongoDB
 mongoose

@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+//nodemailer → a Node.js library that allows you to send emails programmatically.
 require("dotenv").config();
 
 // ✅ Create a transporter using Gmail SMTP

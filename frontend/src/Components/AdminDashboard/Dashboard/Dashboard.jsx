@@ -6,6 +6,7 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  //isAuthenticated is to tracks whether the logged-in user is the admin
   const [dashboardData, setDashboardData] = useState({
     totalVolunteers: 0,
     totalDonors: 0,
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const adminName = localStorage.getItem("admin");
-    if (adminName === "Sravani") {
+    if (adminName === "Revanth") {
       setIsAuthenticated(true);
       fetchDashboardData();
     } else {

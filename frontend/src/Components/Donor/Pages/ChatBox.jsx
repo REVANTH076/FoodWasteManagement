@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 
-const ChatBox = ({ currentUser = "volunteer", chatWith = "admin" }) => {
+const ChatBox = ({ currentUser = "Donor", chatWith = "admin" }) => {
   const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState("");
 

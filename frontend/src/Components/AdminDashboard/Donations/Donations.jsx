@@ -13,7 +13,7 @@ const Donations = () => {
 
   useEffect(() => {
     const adminName = localStorage.getItem("admin");
-    if (adminName === "Sravani") {
+    if (adminName === "Revanth") {
       setIsAuthenticated(true);
       fetchDonations();
     } else {
@@ -46,8 +46,10 @@ const Donations = () => {
       const res = await axios.post(
         `http://localhost:5000/api/admin/assign-volunteer/${selectedDonation._id}`
       );
+      //{selectedDonation._id}  to know which donation to assign a volunteer to.
       alert(res.data.message);
       setShowModal(false);
+      // Closes the assign volunteer modal after the assignment is complete
       fetchDonations();
     } catch (err) {
       console.error("Assignment Error:", err.response?.data || err.message);

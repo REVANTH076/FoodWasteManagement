@@ -12,13 +12,13 @@ const AdminLogin = ({ closeModal }) => {
     e.preventDefault();
 
     // Dummy credentials
-    if (username === 'Sravani' && password === 'Sravani123') {
+    if (username === 'Revanth' && password === 'Revanth123') {
       closeModal();
       navigate('/admin-dashboard');
     } else {
       alert('Invalid credentials!');
     }
-    localStorage.setItem("admin","Sravani");
+    localStorage.setItem("admin","Revanth");
   };
   const handleCancel = (e) => {
     e.preventDefault(); // Prevent form submission

@@ -10,7 +10,7 @@ const ManageUsers = () => {
 
   useEffect(() => {
     const adminName = localStorage.getItem("admin");
-    if (adminName === "Sravani") {
+    if (adminName === "Revanth") {
       setIsAuthenticated(true);
       fetchPendingUsers();
     } else {

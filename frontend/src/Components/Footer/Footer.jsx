@@ -19,8 +19,8 @@ const Footer = () => {
           </p>
           <div className="footer-contact">
             <p>RGUKT RKVALLEY</p>
-            <p>chennakesavulu689@gmail.com</p>
-            <p>📞 +91 6305732145</p>
+            <p>Revanth@gmail.com</p>
+            <p>📞 +91 8790445677</p>
           </div>
         </div>
 
@@ -43,9 +43,9 @@ const Footer = () => {
         <div className="owner-column">
           <h3 className="owner-subtitle">Website Owners</h3>
           <div className="owner-contact">
-            <p>Kesava 📞 6305732145</p>
-            <p>Chinmayee 📞 9381573725</p>
-            <p>Sravani 📞 9908025175</p>
+            <p>Revanth 📞 8790445677</p>
+            <p>XYZ 📞 9381573725</p>
+            {/* <p>Sravani 📞 9908025175</p> */}
           </div>
         </div>
 

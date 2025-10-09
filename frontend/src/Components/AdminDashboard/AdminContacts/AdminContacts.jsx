@@ -10,6 +10,7 @@ const AdminContacts = () => {
       .then(data => setContacts(data))
       .catch(err => console.error("Error fetching contacts:", err));
   }, []);
+  // The empty dependency array [] means this effect runs only once when the component first loads
 
   return (
     <div className="contact-list">

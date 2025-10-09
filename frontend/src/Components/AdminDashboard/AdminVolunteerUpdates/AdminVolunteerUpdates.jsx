@@ -8,6 +8,7 @@ const AdminVolunteerUpdates = () => {
     const fetchDonations = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/admin/volunteer-updates");
+        // axios automatically converts JSON responses to JavaScript objects
         console.log("Donations Response:", res.data);  // <== ADD THIS LINE
         setDonations(res.data);
       } catch (err) {
@@ -39,12 +40,12 @@ const AdminVolunteerUpdates = () => {
             {donations.map((donation) => (
               <tr key={donation._id}>
                 <td data-label="Title">{donation.title}</td>
-<td data-label="Donor">{donation.donorName}</td>
-<td data-label="Volunteer Name">{donation.assignedVolunteer?.name || "N/A"}</td>
-<td data-label="Volunteer Email">{donation.assignedVolunteer?.email || "N/A"}</td>
-<td data-label="Pickup Status">{donation.pickupStatus}</td>
-<td data-label="Location">{donation.assignedVolunteer?.location || "N/A"}</td>
-<td data-label="Distance (km)">{donation.distance?.toFixed(2) || "N/A"}</td>
+                <td data-label="Donor">{donation.donorName}</td>
+                <td data-label="Volunteer Name">{donation.assignedVolunteer?.name || "N/A"}</td>
+                <td data-label="Volunteer Email">{donation.assignedVolunteer?.email || "N/A"}</td>
+                <td data-label="Pickup Status">{donation.pickupStatus}</td>
+                <td data-label="Location">{donation.assignedVolunteer?.location || "N/A"}</td>
+                <td data-label="Distance (km)">{donation.distance?.toFixed(2) || "N/A"}</td>
               </tr>
             ))}
           </tbody>

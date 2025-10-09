@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["donor", "receiver", "volunteer", "partnership", "admin"],
+    // enum option is used to restrict a field’s value to a specific set of allowed values
     required: [true, "Role is required"]
   },
   isApproved: {

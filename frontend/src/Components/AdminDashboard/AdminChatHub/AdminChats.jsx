@@ -36,7 +36,8 @@ const AdminChats = () => {
           >
             {chat.label}
           </button>
-        ))}
+        ))} 
+        {/* { ... } → Curly braces in JSX mean JavaScript expression inside JSX. */}
 
         <div className="user-list">
           {usersList.map((user) => (

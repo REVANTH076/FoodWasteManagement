@@ -11,8 +11,10 @@ const Contact = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    // prevents the default page reload on form submission
     setResult("Sending....");
     const formData = new FormData(event.target);
+    // FormData is a built-in JavaScript object that automatically collects all input fields in the form
 
     // Step 1: Send email using Web3Forms
     formData.append("access_key", "2d50e040-6ae9-4f85-b7dd-7dadcce03dd7");
@@ -21,6 +23,7 @@ const Contact = () => {
       method: "POST",
       body: formData
     });
+    // Web3Forms allows you to just use their API — you submit the form, and they send it as an email for you.
 
     const data = await response.json();
 
@@ -56,7 +59,7 @@ We would love to hear from you!
 <br></br>
 🌟 Whether you're a restaurant, NGO, volunteer, or a kind-hearted individual looking to make a difference, feel free to reach out.</p>
         <ul>
-          <li><img src={mail_icon} alt='' />chennakesavulu689@gmail.com</li>
+          <li><img src={mail_icon} alt='' />Surya689@gmail.com</li>
           <li><img src={phone_icon} alt='' />+91 6305732145 </li>
           <li><img src={location_icon} alt='' />RGUKT RKVALLEY</li>
         </ul>

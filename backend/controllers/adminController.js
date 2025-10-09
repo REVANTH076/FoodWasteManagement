@@ -1,8 +1,8 @@
 // Import required modules
 const Donation = require("../models/Donation");
+const User = require("../models/User");
 const sendMail = require("../config/email");
 const getDrivingDistance = require("../utils/distance"); // Ensure this file contains the distance calculation logic
-const User = require("../models/User");
 const sendNotification = require("../utils/notification");
 
 const getApprovedVolunteers = async () => {

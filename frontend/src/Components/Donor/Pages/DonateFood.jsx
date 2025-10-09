@@ -22,6 +22,8 @@ const DonateFood = () => {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`
       );
+      // converts a text address into latitude and longitude coordinates using the OpenStreetMap Nominatim API.
+
       const data = await response.json();
       if (data.length > 0) {
         const { lat, lon, display_name } = data[0];
@@ -47,7 +49,8 @@ const DonateFood = () => {
     const timer = setTimeout(() => {
       fetchCoordinates(formData.address);
     }, 600);
-
+    // Create a new timer that will wait 600ms after the user stops typing.
+    // After 600ms of inactivity, it calls fetchCoordinates with the current address
     setDebounceTimer(timer);
 
     return () => clearTimeout(timer);

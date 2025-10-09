@@ -22,6 +22,7 @@ router.get("/pending-users", async (req, res) => {
 router.put("/approve-user/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, { isApproved: true }, { new: true });
+    // Third parameter: { new: true } → returns the updated user document, not the old one
 
     if (user) {
       await sendEmail(
