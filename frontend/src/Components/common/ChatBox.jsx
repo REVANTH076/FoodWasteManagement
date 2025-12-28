@@ -1,28 +1,34 @@
-import "./ChatBox.css";
-
+// components/common/ChatBox.jsx
 import React, { useEffect, useState } from "react";
-
 import { motion } from "framer-motion";
+import "./ChatBox.css"; // you can reuse one CSS
 
-const ChatBox = ({ currentUser = "volunteer", chatWith = "admin" }) => {
+const ChatBox = ({ currentUser, chatWith, title }) => {
   const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState("");
 
-  // ✅ 1. Fetch messages from backend
   useEffect(() => {
-    fetch(`http://localhost:5000/api/messages/${currentUser}/${chatWith}`)
+    if (!currentUser?.name || !chatWith?.name) return;
+
+    fetch(
+      `http://localhost:5000/api/messages/${currentUser.name}/${chatWith.name}`
+    )
       .then((res) => res.json())
-      .then((data) => setMessages(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+            setMessages(data);
+        } else {
+            setMessages([]);
+        }})
       .catch((err) => console.error("Error fetching messages:", err));
   }, [currentUser, chatWith]);
 
-  // ✅ 2. Send message to backend
   const sendMessage = async () => {
-    if (newMsg.trim() === "") return;
+    if (!newMsg.trim()) return;
 
-    const newMessage = {
-      sender: currentUser,
-      receiver: chatWith,
+    const payload = {
+      sender: currentUser.name,
+      receiver: chatWith.name,
       content: newMsg,
     };
 
@@ -30,11 +36,11 @@ const ChatBox = ({ currentUser = "volunteer", chatWith = "admin" }) => {
       const res = await fetch("http://localhost:5000/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newMessage),
+        body: JSON.stringify(payload),
       });
 
-      const savedMessage = await res.json();
-      setMessages((prev) => [...prev, savedMessage]); // ✅ Add to UI
+      const saved = await res.json();
+      setMessages((prev) => [...prev, saved]);
       setNewMsg("");
     } catch (err) {
       console.error("Error sending message:", err);
@@ -43,16 +49,17 @@ const ChatBox = ({ currentUser = "volunteer", chatWith = "admin" }) => {
 
   return (
     <div className="chat-container">
-      <div className="chat-header">💬 Volunteer Chat with {chatWith}</div>
+      <div className="chat-header">💬 {title}</div>
 
       <div className="chat-messages">
-        {messages.map((msg, index) => (
+        {messages.map((msg, i) => (
           <motion.div
-            key={msg._id || index}
-            className={`message ${msg.sender === currentUser ? "sent" : "received"}`}
+            key={msg._id || i}
+            className={`message ${
+              msg.sender === currentUser.name ? "sent" : "received"
+            }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
           >
             {msg.content}
           </motion.div>
@@ -61,20 +68,14 @@ const ChatBox = ({ currentUser = "volunteer", chatWith = "admin" }) => {
 
       <div className="chat-input">
         <input
-          type="text"
           value={newMsg}
           onChange={(e) => setNewMsg(e.target.value)}
           placeholder="Type your message..."
         />
-        <button className="chat-sent-btn" onClick={sendMessage}>Send</button>
+        <button className="chat-send-btn"  onClick={sendMessage}>Send</button>
       </div>
     </div>
   );
 };
 
 export default ChatBox;
-
-
-
-
-

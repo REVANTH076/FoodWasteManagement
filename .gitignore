@@ -1,2 +1,12 @@
 node_modules/
+
+# env files
 .env
+backend/.env
+
+# zip files
+*.zip
+
+# node
+node_modules/
+dist/
