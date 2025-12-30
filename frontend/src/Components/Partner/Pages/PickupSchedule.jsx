@@ -1,14 +1,14 @@
 import "./PickupSchedule.css";
 
 import React, { useEffect, useState } from "react";
-
+import API_BASE_URL from "../../../config/api"; 
 const PickupSchedule = ({ restaurantId }) => {
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
     const fetchSchedules = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/pickupschedule/${restaurantId}`);
+        const res = await fetch(`${API_BASE_URL}/api/pickupschedule/${restaurantId}`);
         const data = await res.json();
   
         // If no real data, use dummy data

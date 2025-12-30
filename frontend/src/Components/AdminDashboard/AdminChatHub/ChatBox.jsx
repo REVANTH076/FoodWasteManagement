@@ -3,13 +3,14 @@
   import React, { useEffect, useState } from "react";
 
   import { motion } from "framer-motion";
+  import API_BASE_URL from "../../../config/api"; 
 
-  const ChatBox = ({ currentUser = "admin", chatWith = "volunteer" }) => {
+  const ChatBox = ({   }) => {
     const [messages, setMessages] = useState([]);
     const [newMsg, setNewMsg] = useState("");
 
     useEffect(() => {
-      fetch(`http://localhost:5000/api/messages/${currentUser}/${chatWith}`)
+      fetch(`${API_BASE_URL}/api/messages/${currentUser}/${chatWith}`)
         .then((res) => res.json())
         .then((data) => setMessages(data))
         .catch((err) => console.error("Fetch error:", err));
@@ -25,7 +26,7 @@
       };
 
       try {
-        const res = await fetch("http://localhost:5000/api/messages", {
+        const res = await fetch(`${API_BASE_URL}/api/messages`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(message),
@@ -49,7 +50,7 @@
           {messages.map((msg, idx) => (
             <motion.div
               key={msg._id || idx}
-              className={`message ${msg.sender === currentUser ? "sent" : "received"}`}
+              className={`message ${msg.sender === currentUser ? "sent" : "received"}`} // Messages sent by you → right side Messages from other user → left side
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}

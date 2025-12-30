@@ -104,6 +104,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './DonationsViewAssigned.css'; // Updated CSS here
+import API_BASE_URL from "../../../config/api"; 
+
 
 const DonationsViewAssigned = () => {
   const [donations, setDonations] = useState([]);
@@ -113,7 +115,7 @@ const DonationsViewAssigned = () => {
   const fetchAssignedDonations = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/volunteer/assigned/${volunteerId}`);
+      const res = await axios.get(`${API_BASE_URL}/api/volunteer/assigned/${volunteerId}`);
       const donationsWithReceiverName = res.data.map((donation) => ({
         ...donation,
         receiverName: donation.receiverName || "Not Assigned",

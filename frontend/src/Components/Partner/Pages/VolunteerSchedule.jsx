@@ -85,7 +85,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./VolunteerSchedule.css";
-
+import API_BASE_URL from "../../../config/api"; 
 const VolunteerSchedule = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -107,7 +107,7 @@ const VolunteerSchedule = () => {
         if (!receiverName) return;
 
         const response = await axios.get(
-          `http://localhost:5000/api/requests/volunteer-schedule/${receiverName}`
+          `${API_BASE_URL}/api/requests/volunteer-schedule/${receiverName}`
         );
         console.log("Fetched schedule data:", response.data);
         setRequests(response.data);

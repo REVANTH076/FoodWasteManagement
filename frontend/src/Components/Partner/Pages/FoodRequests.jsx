@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./FoodRequests.css";
+import API_BASE_URL from "../../../config/api"; 
+
 
 const FoodRequests = () => {
   const [donations, setDonations] = useState([]);
@@ -9,7 +11,7 @@ const FoodRequests = () => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/food-requests");
+        const res = await axios.get("${API_BASE_URL}/api/food-requests");
         setDonations(res.data);
       } catch (err) {
         console.error("Error fetching food requests:", err);

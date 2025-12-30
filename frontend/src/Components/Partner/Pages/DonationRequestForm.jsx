@@ -1,5 +1,6 @@
 import './DonationRequestForm.css';
 import axios from 'axios';
+import API_BASE_URL from "../../../config/api";
 
 
 import React, { useState } from 'react';
@@ -31,7 +32,7 @@ const DonationRequestForm = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:5000/api/donation-request', formData);
+      const response = await axios.post(`${API_BASE_URL}/api/donation-request`, formData);
   
       console.log('Form submitted:', response.data);
       setFormSubmitted(true);

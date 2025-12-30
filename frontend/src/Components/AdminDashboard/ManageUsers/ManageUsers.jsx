@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // for redirection
 import "./ManageUsers.css";
+import API_BASE_URL from "../../../config/api"; 
 
 const ManageUsers = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const ManageUsers = () => {
 
   const fetchPendingUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/pending-users");
+      const res = await axios.get(`${API_BASE_URL}/api/admin/pending-users`);
       console.log("Fetched Pending Users:", res.data);
       setPendingUsers(res.data);
     } catch (error) {
@@ -31,7 +32,7 @@ const ManageUsers = () => {
 
   const approveUser = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/approve-user/${id}`);
+      await axios.put(`${API_BASE_URL}/api/admin/approve-user/${id}`);
       alert("User approved and notified via email!");
       fetchPendingUsers();
     } catch (error) {
@@ -41,7 +42,7 @@ const ManageUsers = () => {
 
   const rejectUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/reject-user/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/admin/reject-user/${id}`);
       alert("User rejected and notified via email.");
       fetchPendingUsers();
     } catch (error) {

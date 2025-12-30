@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import partnerImage from "../../assets/partner-login-side.png";
-
+import API_BASE_URL from "../../config/api"; 
 const PartnerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ const PartnerLogin = () => {
 
   const sendOtp = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/send-otp", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/send-otp`, {
         email,
         password,
         role: "partnership",
@@ -35,7 +35,7 @@ const PartnerLogin = () => {
 
   const verifyOtp = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/verify-otp", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/verify-otp`, {
         email,
         otp,
       });

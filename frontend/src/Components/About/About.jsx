@@ -10,6 +10,13 @@ const About = ({setPlayState}) => {
       <div className='about-left'>
         <img src={about_img} alt='' className='about-img'/>
         <img src={play_icon} alt='' className='play-icon' onClick={()=>{setPlayState(true)}}/>
+        {/* setPlayState is received as a prop, which means:
+        The state itself lives in a parent component
+        This component is only requesting a state update
+        So the real state is something like this in the parent:
+        
+        const [playState, setPlayState] = useState(false);
+        <About setPlayState={setPlayState} /> */}
       </div>
       <div className='about-right'>
         <h3>ABOUT US </h3><br></br>

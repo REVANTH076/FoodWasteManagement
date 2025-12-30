@@ -1,9 +1,10 @@
 import './AdminChats.css';
-
 import React, { useEffect, useState } from 'react';
-
 import ChatBox from './ChatBox';
+import API_BASE_URL from "../../../config/api"; 
 
+
+// A configuration array Used to render buttons dynamically Avoids hardcoding buttons in JSX
 const chatTypes = [
   { label: 'Volunteer', value: 'volunteer' },
   { label: 'Donor', value: 'donor' },
@@ -12,13 +13,13 @@ const chatTypes = [
 
 const AdminChats = () => {
   const [selectedChatType, setSelectedChatType] = useState('volunteer');
-  const [usersList, setUsersList] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
+  const [usersList, setUsersList] = useState([]); //Stores users fetched from the backend for the selected <role></role>
+  const [selectedUser, setSelectedUser] = useState(null); //Stores the currently selected user for chatting
 
   // Fetch users when role changes
   useEffect(() => {
     setSelectedUser(null); // Reset selected user
-    fetch(`http://localhost:5000/api/users/role/${selectedChatType}`)
+    fetch(`${API_BASE_URL}/api/users/role/${selectedChatType}`)
       .then((res) => res.json())
       .then((data) => setUsersList(data))
       .catch((err) => console.error("Error fetching users:", err));
@@ -31,7 +32,7 @@ const AdminChats = () => {
         {chatTypes.map((chat) => (
           <button
             key={chat.value}
-            className={selectedChatType === chat.value ? 'active' : ''}
+            className={selectedChatType === chat.value ? 'active' : ''} //“If the selected chat type equals this button’s value, apply the active CSS class. Otherwise, apply nothing.”
             onClick={() => setSelectedChatType(chat.value)}
           >
             {chat.label}
@@ -43,7 +44,8 @@ const AdminChats = () => {
           {usersList.map((user) => (
             <button
               key={user._id}
-              className={selectedUser?.name === user.name ? 'selected-user' : ''}
+              className={selectedUser?.name === user.name ? 'selected-user' : ''} //selectedUser === null Without ?., React would crash:
+
               onClick={() => setSelectedUser(user)}
             >
               {user.name}

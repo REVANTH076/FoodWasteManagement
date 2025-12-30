@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Notifications.css";
+import API_BASE_URL from "../../config/api"; 
 
 const Notifications = ({ role, userName, title = "My Notifications" }) => {
   const [notifications, setNotifications] = useState([]);
@@ -15,7 +16,7 @@ const Notifications = ({ role, userName, title = "My Notifications" }) => {
   const fetchNotifications = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/notifications/${role}/${userName}`
+        `${API_BASE_URL}/api/notifications/${role}/${userName}`
       );
       setNotifications(res.data || []);
       setUnreadCount(res.data.filter((n) => !n.read).length);
@@ -26,7 +27,7 @@ const Notifications = ({ role, userName, title = "My Notifications" }) => {
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/notifications/read/${id}`);
+      await axios.put(`${API_BASE_URL}/api/notifications/read/${id}`);
       setNotifications((prev) =>
         prev.map((n) =>
           n._id === id ? { ...n, read: true } : n

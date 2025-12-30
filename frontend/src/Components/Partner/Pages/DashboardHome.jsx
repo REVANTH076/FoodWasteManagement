@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+// import API_BASE_URL from "../../config/api"; 
+import API_BASE_URL from "../../../config/api";
+
+
 
 const ViewDonations = () => {
   const [donations, setDonations] = useState([]);
@@ -7,7 +11,8 @@ const ViewDonations = () => {
 
   const fetchMyDonations = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/donations/my-donations/${donorName}`);
+      // const res = await axios.get(`http://localhost:5000/api/donations/my-donations/${donorName}`);
+      const res = await axios.get(`${API_BASE_URL}/api/donations/my-donations/${donorName}`);
       setDonations(res.data);
     } catch (err) {
       console.error("Error fetching your donations:", err);
@@ -19,7 +24,7 @@ const ViewDonations = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/donations/cancel/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/donations/cancel/${id}`);
       alert("Donation cancelled successfully.");
       fetchMyDonations(); // Refresh
     } catch (err) {

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import API_BASE_URL from "../../../config/api"; 
 
 const ReceiverImpactReport = ({ receiverId }) => {
   const [reportData, setReportData] = useState(null);
@@ -12,7 +13,7 @@ const ReceiverImpactReport = ({ receiverId }) => {
   useEffect(() => {
     const fetchReportData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/impact/${receiverId}`);
+        const res = await fetch(`${API_BASE_URL}/api/impact/${receiverId}`);
         const data = await res.json();
         setReportData(data);
       } catch (err) {

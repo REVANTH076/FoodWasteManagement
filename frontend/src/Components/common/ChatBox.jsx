@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./ChatBox.css"; // you can reuse one CSS
+import API_BASE_URL from "../../config/api"; 
 
 const ChatBox = ({ currentUser, chatWith, title }) => {
   const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ const ChatBox = ({ currentUser, chatWith, title }) => {
     if (!currentUser?.name || !chatWith?.name) return;
 
     fetch(
-      `http://localhost:5000/api/messages/${currentUser.name}/${chatWith.name}`
+      `${API_BASE_URL}/api/messages/${currentUser.name}/${chatWith.name}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -33,7 +34,7 @@ const ChatBox = ({ currentUser, chatWith, title }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
+      const res = await fetch(`${API_BASE_URL}/api/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

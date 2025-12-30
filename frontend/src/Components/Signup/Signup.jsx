@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import partnerImage from "../../assets/donor-login-side.png";
+import API_BASE_URL from "../../config/api"; 
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -23,7 +24,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         name,
         email,
         password,

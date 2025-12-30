@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./UpdatePassword.css";
+import API_BASE_URL from "../../config/api"; 
 
 const UpdatePassword = ({ role, userName }) => {
   const [oldPassword, setOldPassword] = useState("");
@@ -29,7 +30,7 @@ const UpdatePassword = ({ role, userName }) => {
 
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/user/update-password",
+        `${API_BASE_URL}/api/user/update-password`,
         {
           donorName: userName, // backend already expects this key
           oldPassword,

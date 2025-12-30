@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MyRequests.css";  // Assuming you have a CSS file for styling
 import { color } from "framer-motion";
+import API_BASE_URL from "../../../config/api"; 
 
 const MyRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -10,7 +11,7 @@ const MyRequests = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/requests/my-requests/${receiverName}`);
+        const res = await axios.get(`${API_BASE_URL}/api/requests/my-requests/${receiverName}`);
         setRequests(res.data);
       } catch (err) {
         console.error("Error fetching requests:", err);

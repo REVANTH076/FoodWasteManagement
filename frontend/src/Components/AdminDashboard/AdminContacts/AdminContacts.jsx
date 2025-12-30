@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './AdminContacts.css';
+import API_BASE_URL from "../../../config/api"; 
 
 const AdminContacts = () => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/contacts")
+    fetch(`${API_BASE_URL}/api/contacts`)
       .then(res => res.json())
       .then(data => setContacts(data))
       .catch(err => console.error("Error fetching contacts:", err));

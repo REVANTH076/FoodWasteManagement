@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminVolunteerUpdates.css";
-
+import API_BASE_URL from "../../../config/api"; 
 const AdminVolunteerUpdates = () => {
   const [donations, setDonations] = useState([]);
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/admin/volunteer-updates");
+        const res = await axios.get(`${API_BASE_URL}/api/admin/volunteer-updates`);
         // axios automatically converts JSON responses to JavaScript objects
         console.log("Donations Response:", res.data);  // <== ADD THIS LINE
         setDonations(res.data);

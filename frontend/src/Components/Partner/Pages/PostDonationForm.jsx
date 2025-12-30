@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PostDonationForm.css";
 import axios from "axios";
+import API_BASE_URL from "../../../config/api"; 
 
 const PostDonationForm = () => {
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ const PostDonationForm = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/donations/create", formData);
+      await axios.post(`${API_BASE_URL}/api/donations/create`, formData);
       alert("✅ Donation submitted for admin approval!");
       setFormData({
         ...formData,

@@ -5,6 +5,8 @@ import mail_icon from '../../assets/mail-icon.png'
 import phone_icon from '../../assets/phone-icon.png'
 import location_icon from '../../assets/location-icon.png'
 import white_arrow from '../../assets/white-arrow.png'
+import API_BASE_URL from "../../config/api"; 
+
 
 const Contact = () => {
   const [result, setResult] = React.useState("");
@@ -31,7 +33,7 @@ const Contact = () => {
       setResult("Form Submitted Successfully");
 
       // Step 2: Save to backend database (Node.js + MongoDB)
-      await fetch("http://localhost:5000/api/contacts/save", {
+      await fetch(`${API_BASE_URL}/api/contacts/save`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

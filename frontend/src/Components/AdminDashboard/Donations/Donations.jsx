@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // for redirection
 import "./Donations.css";
+import API_BASE_URL from "../../../config/api"; 
 
 const Donations = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Donations = () => {
     if (adminName === "Revanth") {
       setIsAuthenticated(true);
       fetchDonations();
-    } else {
+    } else {uuuuuuuuuu
       setIsAuthenticated(false);
       navigate("/admin-dashboard");
     }
@@ -24,7 +25,7 @@ const Donations = () => {
 
   const fetchDonations = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/pending-donations");
+      const res = await axios.get(`${API_BASE_URL}/api/admin/pending-donations`);
       setPendingDonations(res.data);
     } catch (err) {
       console.error("Error fetching donations:", err);
@@ -44,7 +45,7 @@ const Donations = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/admin/assign-volunteer/${selectedDonation._id}`
+        `${API_BASE_URL}/api/admin/assign-volunteer/${selectedDonation._id}`
       );
       //{selectedDonation._id}  to know which donation to assign a volunteer to.
       alert(res.data.message);
@@ -64,7 +65,7 @@ const Donations = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/admin/approve/${donation._id}`);
+      await axios.put(`${API_BASE_URL}/api/admin/approve/${donation._id}`);
       alert("Donation approved!");
       fetchDonations();
     } catch (err) {
@@ -77,7 +78,7 @@ const Donations = () => {
     if (!confirmReject) return;
 
     try {
-      await axios.put(`http://localhost:5000/api/admin/reject/${id}`);
+      await axios.put(`${API_BASE_URL}/api/admin/reject/${id}`);
       alert("Donation rejected.");
       fetchDonations();
     } catch (err) {

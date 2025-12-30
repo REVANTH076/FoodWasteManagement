@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import API_BASE_URL from "../../../config/api"; 
 const ViewPickupHistory = () => {
   const [history, setHistory] = useState([]);
 
@@ -10,7 +10,7 @@ const ViewPickupHistory = () => {
       if (!volunteerId) return;
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/volunteer/history/${volunteerId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/volunteer/history/${volunteerId}`);
         setHistory(res.data);
       } catch (err) {
         console.error("Failed to fetch history:", err);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./RequestApproval.css";
+import API_BASE_URL from "../../../config/api"; 
 
 const RequestApproval = () => {
   const [requests, setRequests] = useState([]);
@@ -21,7 +22,7 @@ const RequestApproval = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/requests/admin/pending");
+      const res = await axios.get(`${API_BASE_URL}/api/requests/admin/pending`);
       console.log(res.data);
       setRequests(res.data);
     } catch (err) {
@@ -31,7 +32,7 @@ const RequestApproval = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/requests/admin/approve/${id}`);
+      await axios.put(`${API_BASE_URL}/api/requests/admin/approve/${id}`);
       fetchRequests();
     } catch (err) {
       console.error("Error approving request:", err);
@@ -40,7 +41,7 @@ const RequestApproval = () => {
 
   const handleReject = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/requests/admin/reject/${id}`);
+      await axios.put(`${API_BASE_URL}/api/requests/admin/reject/${id}`);
       fetchRequests();
     } catch (err) {
       console.error("Error rejecting request:", err);

@@ -91,7 +91,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './UpdatePickupStatus.css';
-
+import API_BASE_URL from "../../../config/api"; 
 const UpdatePickupStatus = () => {
   const [donations, setDonations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -100,7 +100,7 @@ const UpdatePickupStatus = () => {
   const fetchAssignedDonations = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/volunteer/assigned/${volunteerId}`);
+      const res = await axios.get(`${API_BASE_URL}/api/volunteer/assigned/${volunteerId}`);
       const donationsWithReceiverName = res.data.map((donation) => ({
         ...donation,
         receiverName: donation.receiverName || "Not Assigned"
@@ -120,7 +120,7 @@ const UpdatePickupStatus = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/volunteer/update-pickup-status/${donationId}`, {
+      await axios.put(`${API_BASE_URL}/api/volunteer/update-pickup-status/${donationId}`, {
         newStatus: newStatus,
       });
       fetchAssignedDonations();
