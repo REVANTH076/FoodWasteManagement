@@ -33,11 +33,17 @@ exports.signup = async (req, res) => {
 
         await user.save();
 
-        await sendMail(
+        // await sendMail(
+        //     email,
+        //     "Registration Received - Awaiting Approval",
+        //     `Hi ${name},\n\nThank you for registering as a ${role}.\n\nYour account is currently under review and will be activated after admin approval.\n\nWe will notify you once it's approved.\n\nRegards,\nFood Wastage Management Team`
+        // );
+        sendMail(
             email,
             "Registration Received - Awaiting Approval",
             `Hi ${name},\n\nThank you for registering as a ${role}.\n\nYour account is currently under review and will be activated after admin approval.\n\nWe will notify you once it's approved.\n\nRegards,\nFood Wastage Management Team`
-        );
+        ).catch(err => console.error("Signup email error:", err));
+
 
         res.status(201).json({ message: "Signup successful! Awaiting admin approval. Check your email." });
     } catch (error) {
@@ -101,7 +107,13 @@ exports.sendOTP = async (req, res) => {
       await user.save(); // Save OTP, location, and coordinates in DB
   
       // Send OTP via email
-      await sendMail(email, "Your OTP Code", `Your OTP is: ${otp}`);
+      // await sendMail(email, "Your OTP Code", `Your OTP is: ${otp}`);
+      sendMail(
+        email,
+        "Your OTP Code",
+        `Your OTP is: ${otp}`
+      ).catch(err => console.error("OTP email error:", err));
+
   
       return res.status(200).json({
         success: true,

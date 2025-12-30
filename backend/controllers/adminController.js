@@ -77,12 +77,18 @@ exports.createDonation = async (req, res) => {
       await donation.save();
   
       // Send email to the volunteer
-      await sendMail(
+      // await sendMail(
+      //   shortest.volunteer.email,
+      //   "You've been assigned a food pickup!",
+      //   `Dear ${shortest.volunteer.name},\n\nYou have been assigned to pick up the donation: ${donation.title} from ${donation.address}.\n\nThank you!`
+      // );
+
+      sendMail(
         shortest.volunteer.email,
         "You've been assigned a food pickup!",
         `Dear ${shortest.volunteer.name},\n\nYou have been assigned to pick up the donation: ${donation.title} from ${donation.address}.\n\nThank you!`
-      );
-  
+      ).catch(err => console.error("Assignment email error:", err));
+
       // Send notifications to both the donor and volunteer
       // Notification to donor about approval
       try {
